@@ -1,0 +1,29 @@
+import { Meta, Primary, Controls, Story, Subheading } from "@storybook/blocks";
+import * as LoaderStory from "./Loader.stories";
+import { Banner } from "@components/docs/Banner/Banner";
+import { PageLayout } from "@components/docs/PageLayout/PageLayout";
+
+<Meta of={LoaderStory} />
+
+<Banner title="Loader" />
+
+<PageLayout>
+
+A loader component that displays a loading state.
+
+## Usage
+
+```tsx
+import Loader from "@components/Loader/Loader.component";
+
+export default function MyComponent() {
+  return <Loader />;
+}
+```
+
+## Features
+
+- Loading state
+- Fully accessible
+
+</PageLayout>
