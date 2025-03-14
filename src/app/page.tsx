@@ -1,3 +1,5 @@
+import HomeView from "@views/home/HomeView";
+
 export default function HomePage() {
-  return <div>Home</div>;
+  return <HomeView />;
 }

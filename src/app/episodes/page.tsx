@@ -1,5 +1,5 @@
-import React from "react";
+import EpisodesView from "@views/episodes/EpisodesView";
 
-export const EpisodesPage = () => {
-  return <div>Episodes</div>;
-};
+export default function EpisodesPage() {
+  return <EpisodesView />;
+}

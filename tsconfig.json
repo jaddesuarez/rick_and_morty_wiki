@@ -29,7 +29,8 @@
       "@types/*": ["./src/lib/types/*"],
       "@interfaces/*": ["./src/lib/interfaces/*"],
       "@layouts/*": ["./src/ui/layouts/*"],
-      "@styles/*": ["./src/ui/styles/*"]
+      "@styles/*": ["./src/ui/styles/*"],
+      "@views/*": ["./src/ui/views/*"]
     }
   },
   "include": [

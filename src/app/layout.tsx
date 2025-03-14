@@ -2,6 +2,7 @@ import PageTransition from "@layouts/PageTransition";
 import { type FC } from "react";
 import { Providers } from "./Providers";
 import type { Metadata } from "next";
+import { Space_Mono } from "next/font/google";
 
 import Toaster from "@components/shadcn/Toaster/Toaster";
 import "@styles/global.styles.css";
@@ -9,6 +10,11 @@ import "@styles/global.styles.css";
 interface IRootLayout {
   children: React.ReactNode;
 }
+
+const spaceMono = Space_Mono({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Rick and Morty",
@@ -29,7 +35,7 @@ export const metadata: Metadata = {
 
 const RootLayout: FC<IRootLayout> = ({ children }) => {
   return (
-    <html lang="en">
+    <html lang="en" className={spaceMono.className}>
       <head />
       <body>
         <Providers>
