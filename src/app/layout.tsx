@@ -1,34 +1,45 @@
+import PageTransition from "@layouts/PageTransition";
+import { type FC } from "react";
+import { Providers } from "./Providers";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+import Toaster from "@components/shadcn/Toaster/Toaster";
+import "@styles/global.styles.css";
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+interface IRootLayout {
+  children: React.ReactNode;
+}
 
 export const metadata: Metadata = {
   title: "Rick and Morty",
-  description: "Rick and Morty Wiki",
+  description: "A wiki about Rick and Morty series",
+  icons: {
+    icon: [
+      {
+        url: "/img/rick-general.png",
+        sizes: "any",
+      },
+    ],
+    apple: {
+      url: "/img/rick-general.png",
+      sizes: "180x180",
+    },
+  },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+const RootLayout: FC<IRootLayout> = ({ children }) => {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <head />
+      <body>
+        <Providers>
+          <main>{children}</main>
+          <Toaster />
+          <PageTransition />
+        </Providers>
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

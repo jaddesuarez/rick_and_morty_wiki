@@ -21,15 +21,23 @@
     "paths": {
       "@/*": ["./src/*"],
       "@configs/*": ["./src/lib/configs/*"],
-      "@consts/*": ["./src/lib/consts/*"],
+      "@consts/*": ["./src/app/consts/*"],
       "@services/*": ["./src/lib/services/*"],
       "@utils/*": ["./src/lib/utils/*"],
       "@hooks/*": ["./src/lib/hooks/*"],
       "@components/*": ["./src/ui/components/*"],
       "@types/*": ["./src/lib/types/*"],
-      "@interfaces/*": ["./src/lib/interfaces/*"]
+      "@interfaces/*": ["./src/lib/interfaces/*"],
+      "@layouts/*": ["./src/ui/layouts/*"],
+      "@styles/*": ["./src/ui/styles/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/ui/components/shadcn/Toaster"
+  ],
   "exclude": ["node_modules"]
 }
