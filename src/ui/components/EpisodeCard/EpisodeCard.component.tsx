@@ -1,18 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { TvMinimalPlay, ArrowRight, Star } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { URLS } from "@consts/enum";
 import { Episode } from "@/lib/interfaces";
 
 export const EpisodeCard = ({ id, name, episode }: Episode) => {
   const router = useRouter();
   const [isFavorite, setIsFavorite] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const slideAnimation = {
-    x: name.length > 15 ? [0, -(name.length * 8)] : 0,
+    x: name.length > 13 ? [0, -(name.length * 8)] : 0,
     transition: {
       duration: Math.max(name.length * 0.2, 3),
       repeat: Infinity,
@@ -23,17 +28,34 @@ export const EpisodeCard = ({ id, name, episode }: Episode) => {
   };
 
   return (
-    <div className="w-[400px] h-[100px] flex items-center justify-between bg-gray-800 overflow-hidden rounded-xl p-6 pr-10">
+    <div className="w-[330px] h-[100px] flex items-center justify-between bg-gray-800 overflow-hidden rounded-xl p-6 pr-10">
       <div className="flex flex-col gap-2">
         <div className="flex gap-2 items-center">
           <TvMinimalPlay className="w-4 h-4" />
           <div className="w-[150px] overflow-hidden">
-            <motion.p
-              className="text-lg font-bold whitespace-nowrap"
-              animate={slideAnimation}
-            >
-              {name}
-            </motion.p>
+            <AnimatePresence>
+              {isMounted &&
+                (name.length > 13 ? (
+                  <motion.div className="flex">
+                    <motion.p
+                      className="text-lg font-bold whitespace-nowrap"
+                      animate={slideAnimation}
+                    >
+                      {name}
+                    </motion.p>
+                    <motion.p
+                      className="text-lg font-bold whitespace-nowrap ml-8"
+                      animate={slideAnimation}
+                    >
+                      {name}
+                    </motion.p>
+                  </motion.div>
+                ) : (
+                  <motion.p className="text-lg font-bold truncate">
+                    {name}
+                  </motion.p>
+                ))}
+            </AnimatePresence>
           </div>
           <p>|</p>
           <p className="text-lg">{episode}</p>

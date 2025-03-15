@@ -66,14 +66,14 @@ const EpisodesView = () => {
   if (isLoadingEpisodes && page === 1) return <Loading />;
 
   return (
-    <div className="with-space-bg flex flex-col items-center mx-auto px-12 py-32">
+    <div className="with-space-bg flex flex-col items-center mx-auto px-8 py-32">
       {Object.entries(episodesBySeason).map(([season, episodes]) => (
         <div key={season} className="w-full mb-12">
           <h2 className="text-4xl font-bold mb-8">{season}</h2>
           <div className="w-full h-[2px] bg-gray-600 mb-8"></div>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-            {episodes.map((episode) => (
-              <EpisodeCard key={episode.id} {...episode} />
+            {episodes.map((episode, index) => (
+              <EpisodeCard key={index} {...episode} />
             ))}
           </div>
         </div>

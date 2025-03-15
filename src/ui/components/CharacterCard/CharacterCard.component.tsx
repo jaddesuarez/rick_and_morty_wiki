@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Activity,
   CircleHelp,
@@ -14,7 +14,7 @@ import { Character } from "@/lib/interfaces";
 import { useRouter } from "next/navigation";
 import { URLS } from "@consts/enum";
 import { removeLocationExtraInfo } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 export const CharacterCard = ({
   id,
@@ -25,8 +25,12 @@ export const CharacterCard = ({
   location,
 }: Character) => {
   const router = useRouter();
-
   const [isFavorite, setIsFavorite] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const manageFavorite = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -75,12 +79,29 @@ export const CharacterCard = ({
 
       <div className="bg-green-300 p-4 h-[calc(420px-192px)]">
         <div className="overflow-hidden">
-          <motion.h2
-            className="text-gray-900 text-xl mb-4 font-bold whitespace-nowrap"
-            animate={slideAnimation}
-          >
-            {name}
-          </motion.h2>
+          <AnimatePresence>
+            {isMounted &&
+              (name.length > 20 ? (
+                <motion.div className="flex">
+                  <motion.h2
+                    className="text-gray-900 text-xl mb-4 font-bold whitespace-nowrap"
+                    animate={slideAnimation}
+                  >
+                    {name}
+                  </motion.h2>
+                  <motion.h2
+                    className="text-gray-900 text-xl mb-4 font-bold whitespace-nowrap ml-8"
+                    animate={slideAnimation}
+                  >
+                    {name}
+                  </motion.h2>
+                </motion.div>
+              ) : (
+                <motion.h2 className="text-gray-900 text-xl mb-4 font-bold truncate">
+                  {name}
+                </motion.h2>
+              ))}
+          </AnimatePresence>
         </div>
 
         <div className="space-y-2">

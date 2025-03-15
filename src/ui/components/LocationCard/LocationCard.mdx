@@ -1,0 +1,77 @@
+import { Meta, Title, Description, Controls, Story } from "@storybook/blocks";
+import * as LocationCardStories from "./LocationCard.stories";
+import { Banner } from "@components/docs/Banner/Banner";
+import { PageLayout } from "@components/docs/PageLayout/PageLayout";
+
+<Meta of={LocationCardStories} />
+
+<Banner title="LocationCard" />
+
+<PageLayout>
+
+The LocationCard component displays information about a Rick and Morty location.
+It features a planet icon, location name, and dimension information in a visually appealing card format.
+
+## Usage
+
+```tsx
+import { LocationCard } from "@components/LocationCard/LocationCard.component";
+
+<LocationCard
+  id={1}
+  name="Earth (C-137)"
+  type="Planet"
+  dimension="Dimension C-137"
+  residents={[]}
+  url="https://rickandmortyapi.com/api/location/1"
+  created="2017-11-10T12:42:04.162Z"
+/>;
+```
+
+## Props
+
+<Controls />
+
+### Default Location Card
+
+<Story of={LocationCardStories.Default} />
+
+The default card displays basic location information with a planet icon.
+
+### With Long Name
+
+<Story of={LocationCardStories.WithLongName} />
+
+Shows how the card handles long location names with truncation.
+
+### With Long Dimension
+
+<Story of={LocationCardStories.WithLongDimension} />
+
+Demonstrates dimension text truncation for longer strings.
+
+## Features
+
+- Planet SVG icon display
+- Truncated text handling
+- Navigation to location details
+- Responsive design
+- Hover effects
+- Clean, centered layout
+
+## Accessibility
+
+- Interactive elements are keyboard accessible
+- Proper contrast ratios
+- Alt text for images
+- Semantic HTML structure
+
+## Best Practices
+
+- Use clear, descriptive location names
+- Ensure dimension text is meaningful
+- Keep content concise
+- Consider mobile viewports
+- Maintain consistent styling
+
+</PageLayout>
