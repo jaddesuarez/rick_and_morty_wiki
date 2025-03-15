@@ -1,3 +1,6 @@
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
 export const isDev = (): boolean => {
   return process.env.NODE_ENV === "development";
 };
@@ -7,3 +10,7 @@ export const logDev = (...args: unknown[]): void => {
     console.log(...args);
   }
 };
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}

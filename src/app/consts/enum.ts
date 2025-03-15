@@ -3,7 +3,4 @@ export enum URLS {
   EPISODES = "/episodes",
   LOCATIONS = "/locations",
   CHARACTERS = "/characters",
-  EPISODE = "/episode",
-  LOCATION = "/location",
-  CHARACTER = "/character",
 }

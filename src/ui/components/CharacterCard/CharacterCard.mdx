@@ -1,0 +1,58 @@
+import { Meta, Title, Description, Controls, Story } from "@storybook/blocks";
+import * as CharacterCardStories from "./CharacterCard.stories";
+import { Banner } from "@components/docs/Banner/Banner";
+import { PageLayout } from "@components/docs/PageLayout/PageLayout";
+
+<Meta of={CharacterCardStories} />
+
+<Banner title="CharacterCard" />
+
+<PageLayout>
+
+The CharacterCard component displays information about a Rick and Morty
+character in a card format. It shows the character's image, name, status,x
+species, and other relevant details.
+
+## Usage
+
+```tsx
+import { CharacterCard } from "@components/CharacterCard/CharacterCard.component";
+
+<CharacterCard character={character} />;
+```
+
+## Props
+
+<Controls />
+
+### Default Character Card
+
+<Story of={CharacterCardStories.Default} />
+
+The default character card displays all the basic information about a character.
+
+## Features
+
+- Displays character image with proper aspect ratio
+- Shows character status with color-coded indicator (Alive, Dead, Unknown)
+- Presents character details in a clean, organized layout
+- Handles navigation to character details page
+- Fully responsive design
+- Smooth hover animations
+- Accessible keyboard navigation
+
+## Accessibility
+
+- All images have proper alt text
+- Interactive elements are keyboard accessible
+- Color contrast meets WCAG guidelines
+- Semantic HTML structure
+
+## Best Practices
+
+- Always provide all required character properties
+- Use proper image URLs
+- Handle loading and error states appropriately
+- Consider mobile viewport sizes
+
+</PageLayout>
