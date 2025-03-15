@@ -8,7 +8,7 @@ import {
   getCharacterById,
 } from "@services/api.service";
 
-export const useApi = (page?: number, id?: number) => {
+export const useApi = (page?: number, id?: string) => {
   const {
     data: characters,
     isLoading: isLoadingCharacters,
@@ -45,7 +45,7 @@ export const useApi = (page?: number, id?: number) => {
     error: errorEpisodeById,
   } = useQuery({
     queryKey: ["episodeById", id],
-    queryFn: () => getEpisodeById(id || 1),
+    queryFn: () => getEpisodeById(id || ""),
     enabled: !!id,
   });
 
@@ -55,7 +55,7 @@ export const useApi = (page?: number, id?: number) => {
     error: errorLocationById,
   } = useQuery({
     queryKey: ["locationById", id],
-    queryFn: () => getLocationById(id || 1),
+    queryFn: () => getLocationById(id || ""),
     enabled: !!id,
   });
 
@@ -65,7 +65,7 @@ export const useApi = (page?: number, id?: number) => {
     error: errorCharacterById,
   } = useQuery({
     queryKey: ["characterById", id],
-    queryFn: () => getCharacterById(id || 1),
+    queryFn: () => getCharacterById(id || ""),
     enabled: !!id,
   });
 

@@ -22,17 +22,17 @@ export const getCharacters = async (
   return response.data;
 };
 
-export const getEpisodeById = async (id: number): Promise<Episode> => {
+export const getEpisodeById = async (id: string): Promise<Episode> => {
   const response = await fetch.get(`/episode/${id}`);
   return response.data;
 };
 
-export const getLocationById = async (id: number): Promise<Location> => {
+export const getLocationById = async (id: string): Promise<Location> => {
   const response = await fetch.get(`/location/${id}`);
   return response.data;
 };
 
-export const getCharacterById = async (id: number): Promise<Character> => {
+export const getCharacterById = async (id: string): Promise<Character> => {
   const response = await fetch.get(`/character/${id}`);
   return response.data;
 };
