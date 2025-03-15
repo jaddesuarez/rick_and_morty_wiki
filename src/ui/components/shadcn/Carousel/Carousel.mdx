@@ -1,0 +1,99 @@
+import { Meta, Title, Description, Controls, Story } from "@storybook/blocks";
+import * as CarouselStories from "./Carousel.stories";
+import { Banner } from "@components/docs/Banner/Banner";
+import { PageLayout } from "@components/docs/PageLayout/PageLayout";
+
+<Meta of={CarouselStories} />
+
+<Banner title="Carousel" />
+
+<PageLayout>
+
+A carousel component for cycling through elements like a slideshow.
+Built with Embla Carousel for smooth animations and touch interactions.
+
+## Usage
+
+```tsx
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@components/shadcn/Carousel/Carousel";
+
+<Carousel>
+  <CarouselContent>
+    <CarouselItem>Slide 1</CarouselItem>
+    <CarouselItem>Slide 2</CarouselItem>
+    <CarouselItem>Slide 3</CarouselItem>
+  </CarouselContent>
+  <CarouselPrevious />
+  <CarouselNext />
+</Carousel>;
+```
+
+## Props
+
+<Controls />
+
+### Default Carousel
+
+<Story of={CarouselStories.Default} />
+
+Basic carousel with single item view and navigation controls.
+
+### Multiple Items
+
+<Story of={CarouselStories.Multiple} />
+
+Carousel with multiple items per view and looping enabled.
+
+### Responsive Layout
+
+<Story of={CarouselStories.Responsive} />
+
+Responsive carousel with different items per view based on screen size.
+
+## Features
+
+- Touch and drag support
+- Navigation controls
+- Multiple items per view
+- Responsive layouts
+- Loop option
+- Smooth animations
+- Custom alignment
+- Keyboard navigation
+
+## Accessibility
+
+- Keyboard navigation support
+- ARIA labels for controls
+- Focus management
+- Screen reader announcements
+- Touch-friendly targets
+- High contrast navigation buttons
+
+## Best Practices
+
+- Use appropriate spacing between items
+- Maintain consistent slide dimensions
+- Consider mobile touch interactions
+- Provide clear navigation controls
+- Use responsive layouts when needed
+- Keep content readable during transitions
+- Consider autoplay carefully for accessibility
+
+## Composition
+
+The Carousel component is composed of:
+
+- `Carousel`: The root container
+- `CarouselContent`: The slides container
+- `CarouselItem`: Individual slide wrapper
+- `CarouselPrevious`: Previous slide button
+- `CarouselNext`: Next slide button
+
+</PageLayout>

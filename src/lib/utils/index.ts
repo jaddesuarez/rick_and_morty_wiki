@@ -18,3 +18,7 @@ export function cn(...inputs: ClassValue[]) {
 export const removeLocationExtraInfo = (location: string) => {
   return location.split("(")[0];
 };
+
+export const getIdFromUrl = (url: string) => {
+  return url.split("/").pop();
+};

@@ -1,0 +1,91 @@
+import { Meta, Title, Description, Controls, Story } from "@storybook/blocks";
+import * as AvatarStories from "./Avatar.stories";
+import { Banner } from "@components/docs/Banner/Banner";
+import { PageLayout } from "@components/docs/PageLayout/PageLayout";
+
+<Meta of={AvatarStories} />
+
+<Banner title="Avatar" />
+
+<PageLayout>
+
+The Avatar component displays a user's profile picture, initials, or fallback icon.
+It's commonly used in user interfaces to represent people or entities.
+
+## Usage
+
+```tsx
+import {
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+} from "@components/shadcn/Avatar/Avatar";
+
+<Avatar>
+  <AvatarImage src="https://example.com/avatar.jpg" alt="User Name" />
+  <AvatarFallback>UN</AvatarFallback>
+</Avatar>;
+```
+
+## Props
+
+<Controls />
+
+### Default Avatar
+
+<Story of={AvatarStories.Default} />
+
+Basic avatar with image and fallback initials.
+
+### With Fallback
+
+<Story of={AvatarStories.WithFallback} />
+
+Shows fallback content when image fails to load.
+
+### Custom Size
+
+<Story of={AvatarStories.CustomSize} />
+
+Avatar with custom dimensions using Tailwind classes.
+
+### Avatar Group
+
+<Story of={AvatarStories.Group} />
+
+Multiple avatars grouped with overlap effect.
+
+## Features
+
+- Image-based avatars
+- Fallback support with initials
+- Customizable sizes
+- Group layout support
+- Responsive design
+- Graceful error handling
+
+## Accessibility
+
+- Alt text for images
+- ARIA labels when needed
+- Keyboard navigation support
+- High contrast fallback text
+
+## Best Practices
+
+- Always provide alt text for images
+- Use clear, readable initials for fallbacks
+- Keep avatar sizes consistent within context
+- Consider loading states
+- Handle image errors gracefully
+- Use appropriate image aspect ratios
+
+## Composition
+
+The Avatar component is composed of three parts:
+
+- `Avatar`: The root container
+- `AvatarImage`: The image element
+- `AvatarFallback`: The fallback content
+
+</PageLayout>

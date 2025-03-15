@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import {
   Activity,
@@ -13,6 +14,7 @@ import {
 import { useParams } from "next/navigation";
 import { useApi } from "@/lib/hooks/useApi";
 import { Loading } from "@components/Loader/Loader.component";
+import { getIdFromUrl } from "@/lib/utils";
 const CharacterDetailView = () => {
   const { id } = useParams();
   const { characterById, isLoadingCharacterById } = useApi(
@@ -22,6 +24,8 @@ const CharacterDetailView = () => {
   if (isLoadingCharacterById) return <Loading />;
   const { gender, location, species, status, image, name, episode } =
     characterById || {};
+  const locationId = getIdFromUrl(location?.url || "");
+  const episodeIds = episode?.map((episode) => getIdFromUrl(episode));
   const getStatus = (status: string) => {
     if (status === "Alive")
       return <Activity size={20} className="text-green-600" />;
@@ -35,6 +39,7 @@ const CharacterDetailView = () => {
       return <Venus size={20} className="text-red-300" />;
     return <CircleHelp size={20} className="text-gray-400" />;
   };
+
   return (
     <div className="flex flex-col items-center justify-center h-screen w-screen ">
       <div className="flex flex-col md:flex-row px-3 md:px-6 lg:px-50 py-10 items-center w-full justify-between border-b border-green-300">

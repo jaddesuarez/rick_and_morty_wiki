@@ -6,9 +6,11 @@ import {
   getEpisodeById,
   getLocationById,
   getCharacterById,
+  getMultipleEpisodes,
+  getMultipleCharacters,
 } from "@services/api.service";
 
-export const useApi = (page?: number, id?: string) => {
+export const useApi = (page?: number, id?: string, ids?: string[]) => {
   const {
     data: characters,
     isLoading: isLoadingCharacters,
@@ -37,6 +39,26 @@ export const useApi = (page?: number, id?: string) => {
     queryKey: ["episodes", page],
     queryFn: () => getEpisodes(page || 1),
     enabled: !!page,
+  });
+
+  const {
+    data: multipleEpisodes,
+    isLoading: isLoadingMultipleEpisodes,
+    error: errorMultipleEpisodes,
+  } = useQuery({
+    queryKey: ["multipleEpisodes", ids],
+    queryFn: () => getMultipleEpisodes(ids || []),
+    enabled: !!ids,
+  });
+
+  const {
+    data: multipleCharacters,
+    isLoading: isLoadingMultipleCharacters,
+    error: errorMultipleCharacters,
+  } = useQuery({
+    queryKey: ["multipleCharacters", ids],
+    queryFn: () => getMultipleCharacters(ids || []),
+    enabled: !!ids,
   });
 
   const {
@@ -79,6 +101,12 @@ export const useApi = (page?: number, id?: string) => {
     episodes,
     isLoadingEpisodes,
     errorEpisodes,
+    multipleEpisodes,
+    isLoadingMultipleEpisodes,
+    errorMultipleEpisodes,
+    multipleCharacters,
+    isLoadingMultipleCharacters,
+    errorMultipleCharacters,
     episodeById,
     isLoadingEpisodeById,
     errorEpisodeById,

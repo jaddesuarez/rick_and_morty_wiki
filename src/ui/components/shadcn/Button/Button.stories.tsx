@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "./Button";
-import { Mail } from "lucide-react";
+import { Mail, Loader2 } from "lucide-react";
 
 interface IButtonProps {
   variant?:
@@ -30,50 +30,93 @@ const ButtonMock = ({
   );
 };
 
-export default {
+const meta = {
   title: "Components/Button",
   component: ButtonMock,
-  decorators: [
-    (Story) => (
-      <div className="min-h-screen flex items-center justify-center">
-        <Story />
-      </div>
-    ),
-  ],
+  parameters: {
+    layout: "centered",
+  },
 } satisfies Meta<typeof ButtonMock>;
 
-export const Default: StoryObj<typeof ButtonMock> = {
-  render: () => <ButtonMock>Default Button</ButtonMock>,
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    children: "Button",
+  },
 };
 
-export const Destructive: StoryObj<typeof ButtonMock> = {
-  render: () => (
-    <ButtonMock variant="destructive">Destructive Button</ButtonMock>
-  ),
+export const Secondary: Story = {
+  args: {
+    variant: "secondary",
+    children: "Secondary",
+  },
 };
 
-export const Outline: StoryObj<typeof ButtonMock> = {
-  render: () => <ButtonMock variant="outline">Outline Button</ButtonMock>,
+export const Destructive: Story = {
+  args: {
+    variant: "destructive",
+    children: "Delete",
+  },
 };
 
-export const Secondary: StoryObj<typeof ButtonMock> = {
-  render: () => <ButtonMock variant="secondary">Secondary Button</ButtonMock>,
+export const Outline: Story = {
+  args: {
+    variant: "outline",
+    children: "Outline",
+  },
 };
 
-export const Ghost: StoryObj<typeof ButtonMock> = {
-  render: () => <ButtonMock variant="ghost">Ghost Button</ButtonMock>,
+export const Ghost: Story = {
+  args: {
+    variant: "ghost",
+    children: "Ghost",
+  },
+};
+
+export const Small: Story = {
+  args: {
+    size: "sm",
+    children: "Small",
+  },
+};
+
+export const DefaultSize: Story = {
+  args: {
+    size: "default",
+    children: "Default",
+  },
+};
+
+export const Large: Story = {
+  args: {
+    size: "lg",
+    children: "Large",
+  },
+};
+
+export const Loading: Story = {
+  args: {
+    children: (
+      <>
+        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+        Please wait
+      </>
+    ),
+    disabled: true,
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    children: "Disabled",
+    disabled: true,
+  },
 };
 
 export const Link: StoryObj<typeof ButtonMock> = {
   render: () => <ButtonMock variant="link">Link Button</ButtonMock>,
-};
-
-export const Small: StoryObj<typeof ButtonMock> = {
-  render: () => <ButtonMock size="sm">Small Button</ButtonMock>,
-};
-
-export const Large: StoryObj<typeof ButtonMock> = {
-  render: () => <ButtonMock size="lg">Large Button</ButtonMock>,
 };
 
 export const WithIcon: StoryObj<typeof ButtonMock> = {
@@ -90,8 +133,4 @@ export const IconOnly: StoryObj<typeof ButtonMock> = {
       <Mail className="h-4 w-4" />
     </ButtonMock>
   ),
-};
-
-export const Disabled: StoryObj<typeof ButtonMock> = {
-  render: () => <ButtonMock disabled>Disabled Button</ButtonMock>,
 };

@@ -1,0 +1,119 @@
+import { Meta, Title, Description, Controls, Story } from "@storybook/blocks";
+import * as ButtonStories from "./Button.stories";
+import { Banner } from "@components/docs/Banner/Banner";
+import { PageLayout } from "@components/docs/PageLayout/PageLayout";
+
+<Meta of={ButtonStories} />
+
+<Banner title="Button" />
+
+<PageLayout>
+
+A versatile button component that supports various styles, sizes, and states.
+Built with accessibility and customization in mind.
+
+## Usage
+
+```tsx
+import { Button } from "@components/shadcn/Button/Button";
+
+// Primary button
+<Button>Click me</Button>
+
+// Secondary button
+<Button variant="secondary">Settings</Button>
+
+// With icon
+<Button>
+  <PlusIcon className="mr-2 h-4 w-4" /> Add new
+</Button>
+```
+
+## Props
+
+<Controls />
+
+### Variants
+
+<Story of={ButtonStories.Default} />
+
+Primary button - Used for main actions.
+
+<Story of={ButtonStories.Secondary} />
+
+Secondary button - Used for alternative actions.
+
+<Story of={ButtonStories.Destructive} />
+
+Destructive button - Used for dangerous actions.
+
+<Story of={ButtonStories.Outline} />
+
+Outline button - Used for secondary actions.
+
+<Story of={ButtonStories.Ghost} />
+
+Ghost button - Used for subtle actions.
+
+### Sizes
+
+<Story of={ButtonStories.DefaultSize} />
+
+Default size - Standard button size.
+
+<Story of={ButtonStories.Small} />
+
+Small size - Compact button size.
+
+<Story of={ButtonStories.Large} />
+
+Large size - Prominent button size.
+
+### States
+
+<Story of={ButtonStories.Loading} />
+
+Loading state with spinner.
+
+<Story of={ButtonStories.Disabled} />
+
+Disabled state.
+
+## Features
+
+- Multiple variants (primary, secondary, destructive, outline, ghost)
+- Different sizes (small, default, large)
+- Loading state
+- Disabled state
+- Icon support
+- Full width option
+- Keyboard navigation
+
+## Accessibility
+
+- Proper ARIA attributes
+- Keyboard navigation support
+- Focus visible states
+- Disabled state handling
+- Loading state announcement
+- High contrast support
+
+## Best Practices
+
+- Use clear, action-oriented text
+- Choose appropriate variants for actions
+- Maintain consistent sizing within context
+- Include loading states for async actions
+- Provide feedback for interactions
+- Consider mobile touch targets
+
+## Composition
+
+The Button component can be composed with:
+
+- Icons
+- Loading spinners
+- Text
+- Custom elements via asChild prop
+
+</PageLayout>

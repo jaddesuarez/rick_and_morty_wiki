@@ -22,6 +22,20 @@ export const getCharacters = async (
   return response.data;
 };
 
+export const getMultipleCharacters = async (
+  ids: string[]
+): Promise<Character[]> => {
+  const response = await fetch.get(`/character/${ids}`);
+  return response.data;
+};
+
+export const getMultipleEpisodes = async (
+  ids: string[]
+): Promise<Episode[]> => {
+  const response = await fetch.get(`/episode/${ids}`);
+  return response.data;
+};
+
 export const getEpisodeById = async (id: string): Promise<Episode> => {
   const response = await fetch.get(`/episode/${id}`);
   return response.data;
