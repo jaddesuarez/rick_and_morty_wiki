@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { URLS } from "@consts/enum";
+import { URLS } from "@/app/consts/enum";
 import { Location } from "@/lib/interfaces";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";

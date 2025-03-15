@@ -2,7 +2,7 @@
 
 import { Button } from "@components/shadcn/Button/Button";
 import { useRouter } from "next/navigation";
-import { URLS } from "@consts/enum";
+import { URLS } from "@/app/consts/enum";
 import Image from "next/image";
 
 const HomeView = () => {

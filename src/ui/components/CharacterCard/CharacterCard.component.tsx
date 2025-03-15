@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { Character } from "@/lib/interfaces";
 import { useRouter } from "next/navigation";
-import { URLS } from "@consts/enum";
+import { URLS } from "@/app/consts/enum";
 import { removeLocationExtraInfo } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 

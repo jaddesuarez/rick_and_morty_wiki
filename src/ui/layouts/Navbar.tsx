@@ -5,7 +5,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils/index";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { URLS } from "@consts/enum";
+import { URLS } from "@/app/consts/enum";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);

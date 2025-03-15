@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { TvMinimalPlay, ArrowRight, Star } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { URLS } from "@consts/enum";
+import { URLS } from "@/app/consts/enum";
 import { Episode } from "@/lib/interfaces";
 
 export const EpisodeCard = ({ id, name, episode }: Episode) => {

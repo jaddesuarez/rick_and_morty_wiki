@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { EXCLUDED_PATHS } from "@consts/index";
+import { EXCLUDED_PATHS } from "@/app/consts/index";
 import Navbar from "@layouts/Navbar";
 import Footer from "@layouts/Footer";
 
