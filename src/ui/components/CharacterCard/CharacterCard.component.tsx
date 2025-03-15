@@ -7,13 +7,15 @@ import {
   CircleHelp,
   CircleOff,
   User,
-  Globe,
+  Earth,
   Star,
 } from "lucide-react";
 import { Character } from "@/lib/interfaces";
 import { useRouter } from "next/navigation";
 import { URLS } from "@consts/enum";
 import { removeLocationExtraInfo } from "@/lib/utils";
+import { motion } from "framer-motion";
+
 export const CharacterCard = ({
   id,
   name,
@@ -37,9 +39,20 @@ export const CharacterCard = ({
     return <CircleHelp className="text-gray-500" />;
   };
 
+  const slideAnimation = {
+    x: name.length > 20 ? [0, -(name.length * 12)] : 0,
+    transition: {
+      duration: Math.max(name.length * 0.2, 3),
+      repeat: Infinity,
+      repeatType: "loop" as const,
+      ease: "linear",
+      repeatDelay: 1,
+    },
+  };
+
   return (
     <div
-      className="w-[280px] h-[430px] overflow-hidden rounded-xl shadow-lg cursor-pointer 
+      className="w-[280px] h-[410px] overflow-hidden rounded-xl shadow-lg cursor-pointer 
       transition-transform duration-300 ease-in-out hover:-translate-y-2"
       key={id}
       onClick={() => router.push(`${URLS.CHARACTERS}/${id}`)}
@@ -61,24 +74,29 @@ export const CharacterCard = ({
       </div>
 
       <div className="bg-green-300 p-4 h-[calc(420px-192px)]">
-        <h2 className="text-gray-900 text-2xl mb-4 font-bold truncate">
-          {name}
-        </h2>
+        <div className="overflow-hidden">
+          <motion.h2
+            className="text-gray-900 text-xl mb-4 font-bold whitespace-nowrap"
+            animate={slideAnimation}
+          >
+            {name}
+          </motion.h2>
+        </div>
 
         <div className="space-y-2">
           <div className="flex items-center gap-2">
             {getStatusIcon(status)}
-            <span className="text-gray-900 text-base truncate">{status}</span>
+            <span className="text-gray-900 text-sm truncate">{status}</span>
           </div>
 
           <div className="flex items-center gap-2">
             <User className="text-gray-900 w-5 h-5" />
-            <span className="text-gray-900 text-base truncate">{species}</span>
+            <span className="text-gray-900 text-sm truncate">{species}</span>
           </div>
 
           <div className="flex items-center gap-2">
-            <Globe className="text-gray-900 w-5 h-5" />
-            <span className="text-gray-900 text-base truncate">
+            <Earth className="text-gray-900 w-5 h-5" />
+            <span className="text-gray-900 text-sm truncate">
               {removeLocationExtraInfo(location.name)}
             </span>
           </div>

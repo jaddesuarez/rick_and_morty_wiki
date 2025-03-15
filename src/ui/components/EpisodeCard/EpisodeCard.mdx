@@ -1,0 +1,71 @@
+import { Meta, Title, Description, Controls, Story } from "@storybook/blocks";
+import * as EpisodeCardStories from "./EpisodeCard.stories";
+import { Banner } from "@components/docs/Banner/Banner";
+import { PageLayout } from "@components/docs/PageLayout/PageLayout";
+
+<Meta of={EpisodeCardStories} />
+
+<Banner title="EpisodeCard" />
+
+<PageLayout>
+
+The EpisodeCard component displays information about a Rick and Morty episode.
+It shows the episode's name, code (e.g., S01E01), and provides navigation to episode details.
+
+## Usage
+
+```tsx
+import { EpisodeCard } from "@components/EpisodeCard/EpisodeCard.component";
+
+<EpisodeCard
+  id={1}
+  name="Pilot"
+  episode="S01E01"
+  air_date="December 2, 2013"
+  characters={[]}
+  url="https://rickandmortyapi.com/api/episode/1"
+  created="2017-11-10T12:56:33.798Z"
+/>;
+```
+
+## Props
+
+<Controls />
+
+### Default Episode Card
+
+<Story of={EpisodeCardStories.Default} />
+
+The default episode card displays basic episode information.
+
+### With Long Title
+
+<Story of={EpisodeCardStories.WithLongTitle} />
+
+Shows how the card handles long episode titles with automatic scrolling animation.
+
+## Features
+
+- Displays episode name with animated scroll for long titles
+- Shows episode code (season and episode number)
+- Favorite episode functionality
+- Navigation to episode details
+- Responsive design
+- Smooth hover animations
+
+## Accessibility
+
+- Interactive elements are keyboard accessible
+- Proper contrast ratios for text
+- Semantic HTML structure
+- Clear visual feedback for interactions
+
+## Best Practices
+
+- Use consistent episode naming conventions
+- Ensure episode codes follow the SxxExx format
+- Handle long episode titles gracefully
+- Consider mobile viewport sizes
+- Implement proper navigation handling
+
+</PageLayout>

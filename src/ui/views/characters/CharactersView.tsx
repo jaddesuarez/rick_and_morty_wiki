@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { useApi } from "@/lib/hooks/useApi";
 import { CharacterCard } from "@/ui/components/CharacterCard/CharacterCard.component";
 import { Character } from "@/lib/interfaces";
-import { Loading } from "@/ui/components/Loader/Loader.component";
-import { Skeleton } from "@/ui/components/shadcn/Skeleton/Skeleton";
+import { Loading } from "@components/Loader/Loader.component";
+import { Skeleton } from "@components/shadcn/Skeleton/Skeleton";
 
 const CharactersView = () => {
   const [page, setPage] = useState(1);
