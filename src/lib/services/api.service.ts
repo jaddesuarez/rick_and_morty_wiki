@@ -4,29 +4,35 @@ import { ApiResponse, Episode, Character, Location } from "@interfaces/index";
 export const getEpisodes = async (
   page: number
 ): Promise<ApiResponse<Episode>> => {
-  return fetch.get(`/episode?page=${page}`);
+  const response = await fetch.get(`/episode?page=${page}`);
+  return response.data;
 };
 
 export const getLocations = async (
   page: number
 ): Promise<ApiResponse<Location>> => {
-  return fetch.get(`/location?page=${page}`);
+  const response = await fetch.get(`/location?page=${page}`);
+  return response.data;
 };
 
 export const getCharacters = async (
   page: number
 ): Promise<ApiResponse<Character>> => {
-  return fetch.get(`/character?page=${page}`);
+  const response = await fetch.get(`/character?page=${page}`);
+  return response.data;
 };
 
 export const getEpisodeById = async (id: number): Promise<Episode> => {
-  return fetch.get(`/episode/${id}`);
+  const response = await fetch.get(`/episode/${id}`);
+  return response.data;
 };
 
 export const getLocationById = async (id: number): Promise<Location> => {
-  return fetch.get(`/location/${id}`);
+  const response = await fetch.get(`/location/${id}`);
+  return response.data;
 };
 
 export const getCharacterById = async (id: number): Promise<Character> => {
-  return fetch.get(`/character/${id}`);
+  const response = await fetch.get(`/character/${id}`);
+  return response.data;
 };

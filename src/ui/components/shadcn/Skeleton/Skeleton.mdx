@@ -1,0 +1,56 @@
+import { Meta, Title, Description, Controls, Story } from "@storybook/blocks";
+import * as SkeletonStories from "./Skeleton.stories";
+import { Banner } from "@components/docs/Banner/Banner";
+import { PageLayout } from "@components/docs/PageLayout/PageLayout";
+
+<Meta of={SkeletonStories} />
+
+<Banner title="Skeleton" />
+
+<PageLayout>
+
+The Skeleton component is used to create loading placeholder animations that mimic
+the shape and size of content that will eventually be loaded. It provides visual
+feedback to users while content is being fetched.
+
+## Usage
+
+```tsx
+import { Skeleton } from "@components/shadcn/Skeleton/Skeleton";
+
+<Skeleton className="w-[100px] h-[20px]" />;
+```
+
+## Props
+
+<Controls />
+
+### Default Skeleton
+
+<Story of={SkeletonStories.Default} />
+
+A basic rectangular skeleton loader.
+
+## Features
+
+- Smooth animation effect
+- Customizable dimensions through className
+- Supports different shapes (rectangle, circle)
+- Maintains consistent spacing in layouts
+- Prevents layout shift when content loads
+
+## Accessibility
+
+- Maintains proper ARIA attributes
+- Provides visual indication of loading state
+- Non-intrusive animation for reduced motion preferences
+
+## Best Practices
+
+- Match skeleton dimensions to actual content
+- Use consistent styling across related elements
+- Implement for better perceived performance
+- Consider mobile viewport sizes
+- Avoid excessive animation effects
+
+</PageLayout>

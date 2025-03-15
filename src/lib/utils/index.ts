@@ -14,3 +14,7 @@ export const logDev = (...args: unknown[]): void => {
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
+
+export const removeLocationExtraInfo = (location: string) => {
+  return location.split("(")[0];
+};
