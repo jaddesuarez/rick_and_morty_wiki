@@ -1,36 +1,120 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Rick and Morty Explorer
+
+A Next.js application that allows users to explore the Rick and Morty universe, featuring characters, episodes, and locations from the show.
+
+## Features
+
+- 🎬 Browse all episodes with season organization
+- 👥 Explore detailed character information
+- 📍 Discover various locations from the series
+- ❤️ Save favorite characters and episodes
+- 📱 Fully responsive design
+- 🎨 Modern UI with animations and transitions
+
+## Tech Stack
+
+- **Framework**: Next.js 14 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **State Management**:
+  - Jotai for global state
+  - React Query for server state
+- **UI Components**:
+  - Shadcn/ui
+  - Framer Motion for animations
+- **Development**:
+  - Storybook for component development
+- **API**: Rick and Morty API
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository:
+
+```bash
+git clone https://github.com/jaddesuarez/rick_and_morty_wiki.git
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Run the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Storybook
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project uses Storybook for component development and documentation. To run Storybook:
 
-## Learn More
+```bash
+npm run storybook
+# or
+yarn storybook
+```
 
-To learn more about Next.js, take a look at the following resources:
+Then open [http://localhost:6006](http://localhost:6006) to view the component library.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Each component is documented with:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Different states and variations
+- Interactive controls for props
+- Code snippets
+- Component documentation
 
-## Deploy on Vercel
+## Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+src/
+├── app/              # Next.js app router pages
+├── lib/
+│   ├── config/       # API config
+│   ├── context/      # Jotai atoms and context
+│   ├── hooks/        # Custom React hooks
+│   ├── interfaces/   # TypeScript interfaces
+│   ├── middlewares/  # Middlewares
+│   ├── services/     # Services
+│   ├── utils/        # Utility functions
+└──  ui/
+   ├── components/   # Reusable UI components
+   ├── layouts/      # Layout components
+   ├── styles/       # Global styles
+   └── views/        # Page-specific components
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Features in Detail
+
+### Episodes
+
+- Browse episodes by season
+- View episode details including characters
+- Save favorite episodes
+- Add reviews and ratings
+
+### Characters
+
+- View detailed character information
+- See character status and origin
+- Browse episodes featuring the character
+- Save favorite characters
+
+### Locations
+
+- Explore different locations
+- View residents of each location
+- Get detailed location information
+
+## Acknowledgments
+
+- [Rick and Morty API](https://rickandmortyapi.com/) for providing the data
+- [Next.js](https://nextjs.org/) for the amazing framework
+- [Tailwind CSS](https://tailwindcss.com/) for the styling system
