@@ -8,16 +8,20 @@ export const UserInitializer = () => {
   const [user, setUser] = useAtom(userAtom);
 
   useEffect(() => {
-    if (user) return;
+    const initializeUser = () => {
+      if (user) return;
 
-    const favEpisodes = localStorage.getItem("favEpisodes") || "[]";
-    const favCharacters = localStorage.getItem("favCharacters") || "[]";
+      const favEpisodes = localStorage.getItem("favEpisodes") || "[]";
+      const favCharacters = localStorage.getItem("favCharacters") || "[]";
 
-    setUser({
-      favEpisodes: JSON.parse(favEpisodes),
-      favCharacters: JSON.parse(favCharacters),
-    });
-  }, []);
+      setUser({
+        favEpisodes: JSON.parse(favEpisodes),
+        favCharacters: JSON.parse(favCharacters),
+      });
+    };
+
+    initializeUser();
+  }, [setUser, user]);
 
   return null;
 };
