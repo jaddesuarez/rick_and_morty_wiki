@@ -5,6 +5,8 @@ import { MapPin, Box, SquareUserRound } from "lucide-react";
 import { useParams } from "next/navigation";
 import { useApi } from "@/lib/hooks/useApi";
 import { Loading } from "@components/Loader/Loader.component";
+import { getIdFromUrl } from "@/lib/utils";
+import { CharactersCarousel } from "@/ui/components/CharactersCarousel/CharactersCarousel.component";
 
 const LocationDetailView = () => {
   const { id } = useParams();
@@ -12,8 +14,17 @@ const LocationDetailView = () => {
     undefined,
     id as string
   );
-  if (isLoadingLocationById) return <Loading />;
   const { name, type, dimension, residents } = locationById || {};
+  const characterIds = residents
+    ?.map((character) => getIdFromUrl(character))
+    .filter((id): id is string => id !== undefined);
+  const { multipleCharacters, isLoadingMultipleCharacters } = useApi(
+    undefined,
+    undefined,
+    characterIds || []
+  );
+  if (isLoadingLocationById || isLoadingMultipleCharacters) return <Loading />;
+
   return (
     <div className="flex flex-col items-center justify-center h-screen w-screen ">
       <div className="flex px-3 md:px-6 lg:px-50 py-10 w-full justify-between border-b border-green-300">
@@ -51,6 +62,12 @@ const LocationDetailView = () => {
           className="hidden md:block"
         />
       </div>
+      {multipleCharacters && (
+        <CharactersCarousel
+          type="location"
+          multipleCharacters={multipleCharacters}
+        />
+      )}
     </div>
   );
 };

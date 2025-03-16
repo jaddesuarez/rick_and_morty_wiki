@@ -26,7 +26,7 @@ export const getMultipleCharacters = async (
   ids: string[]
 ): Promise<Character[]> => {
   const response = await fetch.get(`/character/${ids}`);
-  return response.data;
+  return response.data.length > 1 ? response.data : [response.data];
 };
 
 export const getMultipleEpisodes = async (

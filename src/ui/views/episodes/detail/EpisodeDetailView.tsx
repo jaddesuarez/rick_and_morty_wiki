@@ -7,26 +7,14 @@ import {
   ListVideo,
   SquareUserRound,
 } from "lucide-react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useApi } from "@/lib/hooks/useApi";
 import { Loading } from "@components/Loader/Loader.component";
 import { getIdFromUrl } from "@/lib/utils";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselPrevious,
-  CarouselNext,
-} from "@components/shadcn/Carousel/Carousel";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@components/shadcn/Avatar/Avatar";
-import { Character } from "@interfaces/index";
 import { ReviewForm } from "@components/ReviewForm/ReviewForm.component";
+import { CharactersCarousel } from "@/ui/components/CharactersCarousel/CharactersCarousel.component";
+
 const EpisodeDetailView = () => {
-  const router = useRouter();
   const { id } = useParams();
   const { episodeById, isLoadingEpisodeById } = useApi(undefined, id as string);
   const { name, air_date, episode, characters } = episodeById || {};
@@ -74,8 +62,8 @@ const EpisodeDetailView = () => {
       </div>
       {multipleCharacters && (
         <CharactersCarousel
+          type="episode"
           multipleCharacters={multipleCharacters}
-          router={router}
         />
       )}
       <div className="flex flex-col md:flex-row items-center justify-between py-10 w-full max-w-[80%] mx-auto px-4 gap-10 md:gap-0">
@@ -89,48 +77,3 @@ const EpisodeDetailView = () => {
 };
 
 export default EpisodeDetailView;
-
-const CharactersCarousel = ({
-  multipleCharacters,
-  router,
-}: {
-  multipleCharacters: Character[];
-  router: ReturnType<typeof useRouter>;
-}) => {
-  return (
-    <div className="flex flex-col items-center justify-center mt-10 w-full max-w-[80%] mx-auto px-4">
-      <h1 className="text-md md:text-xl lg:text-2xl text-gray-400 font-bold mb-6 w-full text-center md:text-start">
-        Characters in this episode
-      </h1>
-      <Carousel
-        opts={{
-          align: "center",
-          loop: true,
-          dragFree: true,
-        }}
-        className="w-full"
-      >
-        <CarouselContent className="-ml-1 md:-ml-2">
-          {multipleCharacters?.map((character, idx) => (
-            <CarouselItem
-              key={idx}
-              className="pl-3 basis-1/3 md:basis-1/5 lg:basis-1/7"
-            >
-              <Avatar
-                className="w-16 h-16 md:w-20 md:h-20 cursor-pointer hover:scale-90 transition-all duration-300"
-                onClick={() => {
-                  router.push(`/characters/${character.id}`);
-                }}
-              >
-                <AvatarImage src={character.image} />
-                <AvatarFallback>{character.name.charAt(0)}</AvatarFallback>
-              </Avatar>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
-      </Carousel>
-    </div>
-  );
-};
