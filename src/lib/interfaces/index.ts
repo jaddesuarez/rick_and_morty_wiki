@@ -39,6 +39,16 @@ export interface Episode {
   created: string;
 }
 
+export interface Season {
+  episodes: Episode[];
+  seasonNumber: number;
+  totalEpisodes: number;
+}
+
+export interface Episodes {
+  [seasonKey: string]: Season;
+}
+
 export interface Location {
   id: number;
   name: string;

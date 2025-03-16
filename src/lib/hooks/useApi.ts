@@ -9,6 +9,7 @@ import {
   getMultipleEpisodes,
   getMultipleCharacters,
 } from "@services/api.service";
+import { Episode } from "@/lib/interfaces";
 
 export const useApi = (page?: number, id?: string, ids?: string[]) => {
   const {
@@ -31,15 +32,25 @@ export const useApi = (page?: number, id?: string, ids?: string[]) => {
     enabled: !!page,
   });
 
-  const {
-    data: episodes,
-    isLoading: isLoadingEpisodes,
-    error: errorEpisodes,
-  } = useQuery({
-    queryKey: ["episodes", page],
-    queryFn: () => getEpisodes(page || 1),
-    enabled: !!page,
-  });
+  const getAllEpisodes = async () => {
+    try {
+      const episodes: Episode[] = [];
+      let page = 1;
+      let hasMore = true;
+
+      while (hasMore) {
+        const data = await getEpisodes(page);
+        episodes.push(...data.results);
+        hasMore = data.info.next !== null;
+        page++;
+      }
+
+      return episodes;
+    } catch (error) {
+      console.error("Error fetching all episodes:", error);
+      return null;
+    }
+  };
 
   const {
     data: multipleEpisodes,
@@ -98,9 +109,6 @@ export const useApi = (page?: number, id?: string, ids?: string[]) => {
     locations,
     isLoadingLocations,
     errorLocations,
-    episodes,
-    isLoadingEpisodes,
-    errorEpisodes,
     multipleEpisodes,
     isLoadingMultipleEpisodes,
     errorMultipleEpisodes,
@@ -116,5 +124,6 @@ export const useApi = (page?: number, id?: string, ids?: string[]) => {
     characterById,
     isLoadingCharacterById,
     errorCharacterById,
+    getAllEpisodes,
   };
 };
