@@ -1,3 +1,8 @@
+export interface User {
+  favEpisodes: number[];
+  favCharacters: number[];
+}
+
 export interface ApiResponse<T> {
   info: {
     count: number;

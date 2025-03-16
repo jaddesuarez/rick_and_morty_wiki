@@ -4,22 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils/index";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { URLS } from "@/app/consts/enum";
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const links = [
     { name: "Episodes", href: URLS.EPISODES },
@@ -28,14 +18,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav
-      className={cn(
-        "fixed top-0 w-full z-50 transition-all duration-300",
-        isScrolled
-          ? "bg-black/80 backdrop-blur-md shadow-sm"
-          : "bg-black border-b border-gray-600"
-      )}
-    >
+    <nav className="bg-black border-b border-gray-600">
       <div className="py-4 px-4 md:px-22">
         <div className="flex justify-between items-center h-16">
           <Link href={URLS.HOME}>
@@ -43,7 +26,9 @@ const Navbar = () => {
               src="/img/Rick-And-Morty-Logo.png"
               alt="Rick and Morty Logo"
               width={200}
-              height={80}
+              height={100}
+              style={{ height: "auto" }}
+              priority
             />
           </Link>
 
@@ -115,5 +100,4 @@ const Navbar = () => {
     </nav>
   );
 };
-
 export default Navbar;

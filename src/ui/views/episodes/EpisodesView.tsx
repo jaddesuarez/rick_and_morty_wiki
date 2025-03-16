@@ -4,13 +4,11 @@ import { useAtom } from "jotai";
 import { episodesAtom } from "@/lib/context/episodes";
 import { EpisodeCard } from "@/ui/components/EpisodeCard/EpisodeCard.component";
 import { Loading } from "@components/Loader/Loader.component";
-import { useEpisodes } from "@/lib/hooks/useEpisodes";
 
 const EpisodesView = () => {
   const [organizedEpisodes] = useAtom(episodesAtom);
-  const { isLoadingEpisodes } = useEpisodes();
 
-  if (isLoadingEpisodes) return <Loading />;
+  if (!organizedEpisodes) return <Loading />;
 
   return (
     <div className="with-space-bg flex flex-col items-center mx-auto px-8 py-32">

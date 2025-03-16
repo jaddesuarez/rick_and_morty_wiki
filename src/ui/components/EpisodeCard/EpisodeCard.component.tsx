@@ -6,15 +6,26 @@ import { TvMinimalPlay, ArrowRight, Heart } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { URLS } from "@/app/consts/enum";
 import { Episode } from "@/lib/interfaces";
+import { useUser } from "@/lib/hooks/useUser";
 
 export const EpisodeCard = ({ id, name, episode }: Episode) => {
   const router = useRouter();
-  const [isFavorite, setIsFavorite] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const { user, addFavEpisode, removeFavEpisode } = useUser();
+
+  const isFavorite = user?.favEpisodes.includes(id) || false;
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  const handleFavorite = () => {
+    if (isFavorite) {
+      removeFavEpisode(id);
+    } else {
+      addFavEpisode(id);
+    }
+  };
 
   const slideAnimation = {
     x: name.length > 8 ? ["0%", "-50%"] : 0,
@@ -69,7 +80,7 @@ export const EpisodeCard = ({ id, name, episode }: Episode) => {
         size={32}
         className="cursor-pointer text-green-300 flex-shrink-0"
         fill={isFavorite ? "currentColor" : "none"}
-        onClick={() => setIsFavorite(!isFavorite)}
+        onClick={handleFavorite}
       />
     </div>
   );

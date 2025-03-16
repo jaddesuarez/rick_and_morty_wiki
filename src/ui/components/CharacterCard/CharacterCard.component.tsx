@@ -15,7 +15,7 @@ import { useRouter } from "next/navigation";
 import { URLS } from "@/app/consts/enum";
 import { removeLocationExtraInfo } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
-
+import { useUser } from "@/lib/hooks/useUser";
 export const CharacterCard = ({
   id,
   name,
@@ -25,8 +25,10 @@ export const CharacterCard = ({
   location,
 }: Character) => {
   const router = useRouter();
-  const [isFavorite, setIsFavorite] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const { user, addFavCharacter, removeFavCharacter } = useUser();
+
+  const isFavorite = user?.favCharacters.includes(id) || false;
 
   useEffect(() => {
     setIsMounted(true);
@@ -34,7 +36,11 @@ export const CharacterCard = ({
 
   const manageFavorite = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setIsFavorite(!isFavorite);
+    if (isFavorite) {
+      removeFavCharacter(id);
+    } else {
+      addFavCharacter(id);
+    }
   };
 
   const getStatusIcon = (status: string) => {
