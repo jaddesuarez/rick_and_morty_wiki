@@ -33,7 +33,7 @@ export const getMultipleEpisodes = async (
   ids: string[]
 ): Promise<Episode[]> => {
   const response = await fetch.get(`/episode/${ids}`);
-  return response.data;
+  return response.data.length > 1 ? response.data : [response.data];
 };
 
 export const getEpisodeById = async (id: string): Promise<Episode> => {
