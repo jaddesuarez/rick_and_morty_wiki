@@ -1,0 +1,104 @@
+import { Meta, Title, Description, Controls, Story } from "@storybook/blocks";
+import * as InputStories from "./Input.stories";
+import { Banner } from "@components/docs/Banner/Banner";
+import { PageLayout } from "@components/docs/PageLayout/PageLayout";
+
+<Meta of={InputStories} />
+
+<Banner title="Input" />
+
+<PageLayout>
+
+A flexible input component that supports various types and states.
+Built with accessibility and customization in mind.
+
+## Usage
+
+```tsx
+import { Input } from "@components/shadcn/Input/Input";
+
+// Basic input
+<Input type="text" placeholder="Enter text..." />
+
+// With label
+<div className="grid gap-1.5">
+  <label htmlFor="email">Email</label>
+  <Input type="email" id="email" placeholder="Email" />
+</div>
+```
+
+## Props
+
+<Controls />
+
+### Default Input
+
+<Story of={InputStories.Default} />
+
+Basic text input with placeholder.
+
+### Disabled State
+
+<Story of={InputStories.Disabled} />
+
+Input in disabled state.
+
+### With Label
+
+<Story of={InputStories.WithLabel} />
+
+Input with associated label.
+
+### File Input
+
+<Story of={InputStories.File} />
+
+Input for file uploads.
+
+### Search Input
+
+<Story of={InputStories.Search} />
+
+Input optimized for search.
+
+## Features
+
+- Multiple input types support
+- Disabled state
+- Focus and hover states
+- Error state support
+- Placeholder text
+- Custom styling options
+- Form integration
+
+## Accessibility
+
+- Proper ARIA attributes
+- Label association
+- Focus management
+- Keyboard navigation
+- High contrast states
+- Screen reader support
+
+## Best Practices
+
+- Always provide labels for inputs
+- Use appropriate input types
+- Include placeholder text when helpful
+- Handle error states gracefully
+- Consider mobile input methods
+- Maintain consistent styling
+- Follow form validation patterns
+
+## Composition
+
+The Input component can be used with:
+
+- Form labels
+- Error messages
+- Helper text
+- Icons
+- Form validation
+- Custom wrappers
+
+</PageLayout>

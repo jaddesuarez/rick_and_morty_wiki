@@ -23,7 +23,8 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@components/shadcn/Avatar/Avatar";
-
+import { Character } from "@interfaces/index";
+import { ReviewForm } from "@components/ReviewForm/ReviewForm.component";
 const EpisodeDetailView = () => {
   const router = useRouter();
   const { id } = useParams();
@@ -40,7 +41,7 @@ const EpisodeDetailView = () => {
   if (isLoadingEpisodeById || isLoadingMultipleCharacters) return <Loading />;
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen w-screen ">
+    <div className="flex flex-col items-center justify-center mt-32 w-screen ">
       <div className="flex px-3 md:px-6 lg:px-50 pt-10 w-full justify-between border-b border-green-300">
         <div className="flex flex-col gap-6">
           <TvMinimalPlay size={80} className="text-green-300" />
@@ -71,39 +72,65 @@ const EpisodeDetailView = () => {
           className="hidden md:block"
         />
       </div>
-      <div className="flex flex-col items-center justify-center py-10 w-full max-w-[80%] mx-auto px-4">
-        <Carousel
-          opts={{
-            align: "center",
-            loop: true,
-            dragFree: true,
-          }}
-          className="w-full"
-        >
-          <CarouselContent className="-ml-1 md:-ml-2">
-            {multipleCharacters?.map((character, idx) => (
-              <CarouselItem
-                key={idx}
-                className="pl-3 basis-1/3 md:basis-1/5 lg:basis-1/7"
-              >
-                <Avatar
-                  className="w-16 h-16 md:w-20 md:h-20 cursor-pointer hover:scale-90 transition-all duration-300"
-                  onClick={() => {
-                    router.push(`/characters/${character.id}`);
-                  }}
-                >
-                  <AvatarImage src={character.image} />
-                  <AvatarFallback>{character.name.charAt(0)}</AvatarFallback>
-                </Avatar>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
+      {multipleCharacters && (
+        <CharactersCarousel
+          multipleCharacters={multipleCharacters}
+          router={router}
+        />
+      )}
+      <div className="flex flex-col md:flex-row items-center justify-between py-10 w-full max-w-[80%] mx-auto px-4 gap-10 md:gap-0">
+        <h1 className="text-2xl font-bold order-2 md:order-1">Episodes</h1>
+        <div className="flex flex-col items-center justify-center w-full md:w-2/3 lg:w-1/2 order-1 md:order-2">
+          <ReviewForm />
+        </div>
       </div>
     </div>
   );
 };
 
 export default EpisodeDetailView;
+
+const CharactersCarousel = ({
+  multipleCharacters,
+  router,
+}: {
+  multipleCharacters: Character[];
+  router: ReturnType<typeof useRouter>;
+}) => {
+  return (
+    <div className="flex flex-col items-center justify-center mt-10 w-full max-w-[80%] mx-auto px-4">
+      <h1 className="text-md md:text-xl lg:text-2xl text-gray-400 font-bold mb-6 w-full text-center md:text-start">
+        Characters in this episode
+      </h1>
+      <Carousel
+        opts={{
+          align: "center",
+          loop: true,
+          dragFree: true,
+        }}
+        className="w-full"
+      >
+        <CarouselContent className="-ml-1 md:-ml-2">
+          {multipleCharacters?.map((character, idx) => (
+            <CarouselItem
+              key={idx}
+              className="pl-3 basis-1/3 md:basis-1/5 lg:basis-1/7"
+            >
+              <Avatar
+                className="w-16 h-16 md:w-20 md:h-20 cursor-pointer hover:scale-90 transition-all duration-300"
+                onClick={() => {
+                  router.push(`/characters/${character.id}`);
+                }}
+              >
+                <AvatarImage src={character.image} />
+                <AvatarFallback>{character.name.charAt(0)}</AvatarFallback>
+              </Avatar>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
+    </div>
+  );
+};

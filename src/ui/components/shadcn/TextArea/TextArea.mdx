@@ -1,0 +1,110 @@
+import { Meta, Title, Description, Controls, Story } from "@storybook/blocks";
+import * as TextareaStories from "./TextArea.stories";
+import { Banner } from "@components/docs/Banner/Banner";
+import { PageLayout } from "@components/docs/PageLayout/PageLayout";
+
+<Meta of={TextareaStories} />
+
+<Banner title="Textarea" />
+
+<PageLayout>
+
+A flexible textarea component for multi-line text input.
+Built with accessibility and customization in mind.
+
+## Usage
+
+```tsx
+import { Textarea } from "@components/shadcn/TextArea/TextArea";
+
+// Basic textarea
+<Textarea placeholder="Type your message here..." />
+
+// With label
+<div className="grid gap-1.5">
+  <label htmlFor="message">Message</label>
+  <Textarea
+    id="message"
+    placeholder="Type your message here..."
+    className="min-h-[100px]"
+  />
+</div>
+```
+
+## Props
+
+<Controls />
+
+### Default Textarea
+
+<Story of={TextareaStories.Default} />
+
+Basic textarea with placeholder.
+
+### With Label
+
+<Story of={TextareaStories.WithLabel} />
+
+Textarea with associated label.
+
+### Disabled State
+
+<Story of={TextareaStories.Disabled} />
+
+Textarea in disabled state.
+
+### With Fixed Rows
+
+<Story of={TextareaStories.WithRows} />
+
+Textarea with specified number of rows.
+
+### With Character Limit
+
+<Story of={TextareaStories.WithMaxLength} />
+
+Textarea with maximum character limit.
+
+## Features
+
+- Auto-resizing capability
+- Character limit support
+- Disabled state
+- Focus and hover states
+- Error state support
+- Placeholder text
+- Custom styling options
+- Form integration
+
+## Accessibility
+
+- Proper ARIA attributes
+- Label association
+- Focus management
+- Keyboard navigation
+- High contrast states
+- Screen reader support
+- Resize handle
+
+## Best Practices
+
+- Always provide labels
+- Set appropriate initial height
+- Consider character limits
+- Handle overflow gracefully
+- Provide clear placeholder text
+- Maintain consistent styling
+- Consider mobile input methods
+
+## Composition
+
+The Textarea component can be used with:
+
+- Form labels
+- Error messages
+- Character counters
+- Helper text
+- Form validation
+- Custom wrappers
+
+</PageLayout>

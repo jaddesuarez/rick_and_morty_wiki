@@ -4,7 +4,8 @@ import { Providers } from "./Providers";
 import type { Metadata } from "next";
 import { Space_Mono } from "next/font/google";
 
-import Toaster from "@components/shadcn/Toaster/Toaster";
+import { Toaster } from "@/ui/components/shadcn/Sonner/Sonner";
+
 import "@styles/global.styles.css";
 
 interface IRootLayout {

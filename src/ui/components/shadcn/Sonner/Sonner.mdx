@@ -1,0 +1,123 @@
+import { Meta, Title, Description, Controls, Story } from "@storybook/blocks";
+import * as SonnerStories from "./Sonner.stories";
+import { Banner } from "@components/docs/Banner/Banner";
+import { PageLayout } from "@components/docs/PageLayout/PageLayout";
+
+<Meta of={SonnerStories} />
+
+<Banner title="Sonner" />
+
+<PageLayout>
+
+A toast notification component with a clean design and smooth animations.
+Built with accessibility and customization in mind.
+
+## Usage
+
+```tsx
+import { toast } from "sonner";
+import { Toaster } from "@components/shadcn/Sonner/Sonner";
+
+// Add Toaster to your app
+function App() {
+  return (
+    <>
+      {/* Your app content */}
+      <Toaster />
+    </>
+  );
+}
+
+// Show toasts anywhere in your app
+toast("Default notification");
+toast.success("Success notification");
+toast.error("Error notification");
+```
+
+## Examples
+
+### Default Toast
+
+<Story of={SonnerStories.Default} />
+
+Basic notification toast.
+
+### Success Toast
+
+<Story of={SonnerStories.Success} />
+
+Success notification with green styling.
+
+### Error Toast
+
+<Story of={SonnerStories.Error} />
+
+Error notification with red styling.
+
+### With Description
+
+<Story of={SonnerStories.WithDescription} />
+
+Toast with additional descriptive text.
+
+### With Action
+
+<Story of={SonnerStories.WithAction} />
+
+Toast with an action button.
+
+## Features
+
+- Multiple variants (default, success, error)
+- Custom descriptions
+- Action buttons
+- Auto-dismiss
+- Smooth animations
+- Rich colors
+- Expandable content
+- Position customization
+
+## Accessibility
+
+- ARIA labels
+- Focus management
+- Keyboard navigation
+- Screen reader announcements
+- High contrast colors
+- Adequate timing
+- Dismissible by keyboard
+
+## Best Practices
+
+- Keep messages concise
+- Use appropriate variants
+- Set reasonable timeouts
+- Provide clear actions
+- Avoid stacking too many
+- Consider mobile views
+- Use descriptive text
+
+## Composition
+
+The Sonner component includes:
+
+- Toaster: The container component
+- Toast messages
+- Action buttons
+- Description text
+- Close buttons
+- Progress bars
+
+## Configuration
+
+The Toaster component accepts several props:
+
+- position
+- theme
+- richColors
+- expand
+- duration
+- closeButton
+- className
+
+</PageLayout>
