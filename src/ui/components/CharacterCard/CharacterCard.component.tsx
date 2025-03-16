@@ -16,6 +16,8 @@ import { URLS } from "@/app/consts/enum";
 import { removeLocationExtraInfo } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { useUser } from "@/lib/hooks/useUser";
+import { cn } from "@/lib/utils";
+
 export const CharacterCard = ({
   id,
   name,
@@ -67,8 +69,21 @@ export const CharacterCard = ({
       onClick={() => router.push(`${URLS.CHARACTERS}/${id}`)}
     >
       <div className="relative h-[250px]">
-        <Image src={image} alt={name} fill className="object-cover" />
-        <div className="absolute bottom-4 right-4">
+        <Image
+          src={image}
+          alt={name}
+          fill
+          className={cn(
+            "object-cover transition-all duration-300",
+            status === "Dead" && "grayscale"
+          )}
+        />
+        <div className="absolute bottom-4 right-4 flex items-center gap-2">
+          {status === "Dead" && (
+            <span className="text-sm text-white bg-black/60 px-2 py-1 rounded">
+              in loving memory
+            </span>
+          )}
           <button
             className="bg-gray-900 rounded-full p-3 flex items-center justify-center"
             onClick={manageFavorite}

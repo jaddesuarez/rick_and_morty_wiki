@@ -2,6 +2,7 @@
 
 import { Character } from "@/lib/interfaces";
 import { useRouter } from "next/navigation";
+import { cn } from "@/lib/utils";
 import {
   Carousel,
   CarouselContent,
@@ -48,7 +49,11 @@ export const CharactersCarousel = ({
                   router.push(`/characters/${character.id}`);
                 }}
               >
-                <AvatarImage src={character.image} />
+                <AvatarImage
+                  src={character.image}
+                  alt={character.name}
+                  className={cn("", character.status === "Dead" && "grayscale")}
+                />
                 <AvatarFallback>{character.name.charAt(0)}</AvatarFallback>
               </Avatar>
             </CarouselItem>

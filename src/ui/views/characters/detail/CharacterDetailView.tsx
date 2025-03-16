@@ -19,6 +19,8 @@ import { useApi } from "@/lib/hooks/useApi";
 import { Loading } from "@components/Loader/Loader.component";
 import { getIdFromUrl } from "@/lib/utils";
 import { EpisodesCarousel } from "@/ui/components/EpisodesCarousel/EpisodesCarousel.component";
+import { cn } from "@/lib/utils";
+
 const CharacterDetailView = () => {
   const { id } = useParams();
   const router = useRouter();
@@ -90,13 +92,25 @@ const CharacterDetailView = () => {
             </p>
           </div>
         </div>
-        <Image
-          src={image || ""}
-          alt="Rick and Morty"
-          width={400}
-          height={400}
-          className="h-[300px] w-[300px] object-cover rounded-xl"
-        />
+        <div className="relative">
+          <Image
+            src={image || ""}
+            alt="Rick and Morty"
+            width={400}
+            height={400}
+            className={cn(
+              "h-[300px] w-[300px] object-cover rounded-xl transition-all duration-300",
+              status === "Dead" && "grayscale"
+            )}
+          />
+          {status === "Dead" && (
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-center">
+              <span className="text-sm font-medium text-white bg-black/60 p-1 rounded">
+                In Loving Memory
+              </span>
+            </div>
+          )}
+        </div>
       </div>
       <div className="flex flex-col w-full gap-6 mb-10">
         <div>
