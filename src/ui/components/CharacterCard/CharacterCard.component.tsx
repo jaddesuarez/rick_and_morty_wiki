@@ -8,7 +8,7 @@ import {
   CircleOff,
   User,
   Earth,
-  Star,
+  Heart,
 } from "lucide-react";
 import { Character } from "@/lib/interfaces";
 import { useRouter } from "next/navigation";
@@ -44,13 +44,12 @@ export const CharacterCard = ({
   };
 
   const slideAnimation = {
-    x: name.length > 20 ? [0, -(name.length * 12)] : 0,
+    x: name.length > 20 ? ["0%", "-50%"] : 0,
     transition: {
-      duration: Math.max(name.length * 0.2, 3),
+      duration: 300,
       repeat: Infinity,
       repeatType: "loop" as const,
       ease: "linear",
-      repeatDelay: 1,
     },
   };
 
@@ -68,7 +67,7 @@ export const CharacterCard = ({
             className="bg-gray-900 rounded-full p-3 flex items-center justify-center"
             onClick={manageFavorite}
           >
-            <Star
+            <Heart
               size={24}
               className="text-green-300 cursor-pointer"
               fill={isFavorite ? "currentColor" : "none"}
@@ -77,27 +76,25 @@ export const CharacterCard = ({
         </div>
       </div>
 
-      <div className="bg-green-300 p-4 h-[calc(420px-192px)]">
+      <div className="bg-gray-800 p-4 h-[calc(420px-192px)]">
         <div className="overflow-hidden">
           <AnimatePresence>
             {isMounted &&
               (name.length > 20 ? (
                 <motion.div className="flex">
                   <motion.h2
-                    className="text-gray-900 text-xl mb-4 font-bold whitespace-nowrap"
+                    className="text-xl mb-4 font-bold whitespace-nowrap"
                     animate={slideAnimation}
                   >
-                    {name}
-                  </motion.h2>
-                  <motion.h2
-                    className="text-gray-900 text-xl mb-4 font-bold whitespace-nowrap ml-8"
-                    animate={slideAnimation}
-                  >
-                    {name}
+                    {Array.from({ length: 100 }).map((_, index) => (
+                      <span key={index}>
+                        {name} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      </span>
+                    ))}
                   </motion.h2>
                 </motion.div>
               ) : (
-                <motion.h2 className="text-gray-900 text-xl mb-4 font-bold truncate">
+                <motion.h2 className="text-xl mb-4 font-bold truncate">
                   {name}
                 </motion.h2>
               ))}
@@ -107,17 +104,17 @@ export const CharacterCard = ({
         <div className="space-y-2">
           <div className="flex items-center gap-2">
             {getStatusIcon(status)}
-            <span className="text-gray-900 text-sm truncate">{status}</span>
+            <span className="text-sm truncate">{status}</span>
           </div>
 
           <div className="flex items-center gap-2">
-            <User className="text-gray-900 w-5 h-5" />
-            <span className="text-gray-900 text-sm truncate">{species}</span>
+            <User className="w-5 h-5" />
+            <span className="text-sm truncate">{species}</span>
           </div>
 
           <div className="flex items-center gap-2">
-            <Earth className="text-gray-900 w-5 h-5" />
-            <span className="text-gray-900 text-sm truncate">
+            <Earth className="w-5 h-5" />
+            <span className="text-sm truncate">
               {removeLocationExtraInfo(location.name)}
             </span>
           </div>

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { TvMinimalPlay, ArrowRight, Star } from "lucide-react";
+import { TvMinimalPlay, ArrowRight, Heart } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { URLS } from "@/app/consts/enum";
 import { Episode } from "@/lib/interfaces";
@@ -17,13 +17,12 @@ export const EpisodeCard = ({ id, name, episode }: Episode) => {
   }, []);
 
   const slideAnimation = {
-    x: name.length > 8 ? [0, -(name.length * 8)] : 0,
+    x: name.length > 8 ? ["0%", "-50%"] : 0,
     transition: {
-      duration: Math.max(name.length * 0.2, 3),
+      duration: 300,
       repeat: Infinity,
       repeatType: "loop" as const,
       ease: "linear",
-      repeatDelay: 1,
     },
   };
 
@@ -41,13 +40,11 @@ export const EpisodeCard = ({ id, name, episode }: Episode) => {
                       className="text-md font-bold whitespace-nowrap"
                       animate={slideAnimation}
                     >
-                      {name}
-                    </motion.p>
-                    <motion.p
-                      className="text-md font-bold whitespace-nowrap ml-8"
-                      animate={slideAnimation}
-                    >
-                      {name}
+                      {Array.from({ length: 100 }).map((_, index) => (
+                        <span key={index}>
+                          {name} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span>
+                      ))}
                     </motion.p>
                   </motion.div>
                 ) : (
@@ -68,7 +65,7 @@ export const EpisodeCard = ({ id, name, episode }: Episode) => {
           <ArrowRight className="w-4 h-4 text-gray-400" />
         </div>
       </div>
-      <Star
+      <Heart
         size={32}
         className="cursor-pointer text-green-300 flex-shrink-0"
         fill={isFavorite ? "currentColor" : "none"}

@@ -18,9 +18,9 @@ export const LocationCard = ({ id, name, dimension }: Location) => {
   }, []);
 
   const slideAnimation = {
-    x: name.length > 20 ? [0, -(name.length * 12 + 20)] : 0,
+    x: name.length > 20 ? ["0%", "-50%"] : 0,
     transition: {
-      duration: Math.max(name.length * 0.3, 3),
+      duration: 300,
       repeat: Infinity,
       repeatType: "loop" as const,
       ease: "linear",
@@ -46,13 +46,11 @@ export const LocationCard = ({ id, name, dimension }: Location) => {
                     className="text-xl font-bold whitespace-nowrap"
                     animate={slideAnimation}
                   >
-                    {name}
-                  </motion.p>
-                  <motion.p
-                    className="text-xl font-bold whitespace-nowrap ml-8"
-                    animate={slideAnimation}
-                  >
-                    {name}
+                    {Array.from({ length: 100 }).map((_, index) => (
+                      <span key={index}>
+                        {name} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      </span>
+                    ))}
                   </motion.p>
                 </motion.div>
               ) : (
