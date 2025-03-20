@@ -93,6 +93,8 @@ src/
 
 ## Features in Detail
 
+![Rick and Morty Explorer Demo](public/gif/demo.gif)
+
 ### Episodes
 
 - Browse episodes by season
